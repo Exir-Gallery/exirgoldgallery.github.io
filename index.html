@@ -1,197 +1,198 @@
+
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" type="image/png" href="./Design Image 2.png" sizes="16x16">
-  <title>گالری طلای اکسیر</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="./Design Image 2.png" sizes="16x16">
+  <title>گالری طلای اکسیر</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
-  <style>
-    @font-face {
-      font-family: a;
-      src: url(./kelk\ Regular.ttf);
-    }
-    @font-face {
-      font-family: b;
-      src: url(./[EC]Peyda-Black.ttf);
-    }
+  <style>
+    @font-face {
+      font-family: a;
+      src: url(./kelk\ Regular.ttf);
+    }
+    @font-face {
+      font-family: b;
+      src: url(./[EC]Peyda-Black.ttf);
+    }
 
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body {
-      font-family:b;
-      background: radial-gradient(circle at top,#fff9f3,#fff7ef,#fff4ea);
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:flex-start;
-      color:#333;
-    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body {
+      font-family:b;
+      background: radial-gradient(circle at top,#fff9f3,#fff7ef,#fff4ea);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      color:#333;
+    }
 
-    .profileHeader_dQncS {
-      width:100%;
-      max-width:420px;
-      min-height:210px;
-      background-size:cover;
-      background-position:center;
-      border-radius:0 0 14px 14px;
-      margin-bottom:-60px;
-      position:relative;
-      z-index:9999;
-    }
+    .profileHeader_dQncS {
+      width:100%;
+      max-width:420px;
+      min-height:210px;
+      background-size:cover;
+      background-position:center;
+      border-radius:0 0 14px 14px;
+      margin-bottom:-60px;
+      position:relative;
+      z-index:9999;
+    }
 
-    .card {
-      width:100%;
-      max-width:420px;
-      background:#fff;
-      box-shadow:0 10px 40px rgba(0,0,0,0.08);
-      padding:36px 28px;
-      text-align:center;
-      margin-top:35px;
-      position:relative;
-      overflow:hidden;
-      z-index:1;
-    }
+    .card {
+      width:100%;
+      max-width:420px;
+      background:#fff;
+      box-shadow:0 10px 40px rgba(0,0,0,0.08);
+      padding:36px 28px;
+      text-align:center;
+      margin-top:35px;
+      position:relative;
+      overflow:hidden;
+      z-index:1;
+    }
 
-    .card::before {
-      content:"";
-      position:absolute;
-      top:0; left:0;
-      width:100%; height:8px;
-      background:linear-gradient(90deg,#d4af37,#f4e2b8,#d4af37);
-    }
+    .card::before {
+      content:"";
+      position:absolute;
+      top:0; left:0;
+      width:100%; height:8px;
+      background:linear-gradient(90deg,#d4af37,#f4e2b8,#d4af37);
+    }
 
-    .links {
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-      margin-bottom:28px;
-    }
+    .links {
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      margin-bottom:28px;
+    }
 
-    .btn {
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:14px 16px;
-      border-radius:14px;
-      text-decoration:none;
-      background:linear-gradient(145deg,#fff,#f9f5ec);
-      box-shadow:0 5px 15px rgba(0,0,0,0.06);
-      font-weight:600;
-      color:black;
-      transition:all .15s ease;
-      border:1px solid rgba(212,175,55,0.2);
-    }
+    .btn {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 16px;
+      border-radius:14px;
+      text-decoration:none;
+      background:linear-gradient(145deg,#fff,#f9f5ec);
+      box-shadow:0 5px 15px rgba(0,0,0,0.06);
+      font-weight:600;
+      color:black;
+      transition:all .15s ease;
+      border:1px solid rgba(212,175,55,0.2);
+    }
 
-    .btn:hover {
-      transform:translateY(-2px);
-      box-shadow:0 10px 22px rgba(212,175,55,0.25);
-      background:linear-gradient(145deg,#fdfaf3,#fff9f0);
-    }
+    .btn:hover {
+      transform:translateY(-2px);
+      box-shadow:0 10px 22px rgba(212,175,55,0.25);
+      background:linear-gradient(145deg,#fdfaf3,#fff9f0);
+    }
 
-    .ico { font-size:20px; color:#d4af37; }
+    .ico { font-size:20px; color:#d4af37; }
 
-    #map {
-      width:100%;
-      height:250px;
-      border-radius:18px;
-      margin-top:20px;
-      box-shadow:0 5px 20px rgba(0,0,0,0.08);
-    }
+    #map {
+      width:100%;
+      height:250px;
+      border-radius:18px;
+      margin-top:20px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    }
 
-    .mapAction {
-      display:inline-block;
-      margin-top:12px;
-      color:black;
-      font-weight:600;
-      text-decoration:none;
-      font-size:0.75em;
-      padding-bottom:20px;
-    }
+    .mapAction {
+      display:inline-block;
+      margin-top:12px;
+      color:black;
+      font-weight:600;
+      text-decoration:none;
+      font-size:0.75em;
+      padding-bottom:20px;
+    }
 
-    .mapAction:hover {
-      opacity:0.9;
-      transform:translateY(-1px);
-    }
+    .mapAction:hover {
+      opacity:0.9;
+      transform:translateY(-1px);
+    }
 
-    .leaflet-popup-content {
-      font-family: 'b', sans-serif;
-      font-size:0.61em;
-      color:#333;
-      text-align:center;
-    }
+    .leaflet-popup-content {
+      font-family: 'b', sans-serif;
+      font-size:0.61em;
+      color:#333;
+      text-align:center;
+    }
 
-    .address {
-      display:flex;
-      align-items:center;
-      gap:10px;
-      justify-content:center;
-      margin-top:12px;
-      padding:10px 16px;
-      border-radius:14px;
-      background:linear-gradient(145deg,#fff,#f9f5ec);
-      box-shadow:0 5px 15px rgba(0,0,0,0.06);
-      font-family:'b', sans-serif;
-      font-size:0.91em;
-      color:#365c92;
-      text-align:center;
-    }
+    .address {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      justify-content:center;
+      margin-top:12px;
+      padding:10px 16px;
+      border-radius:14px;
+      background:linear-gradient(145deg,#fff,#f9f5ec);
+      box-shadow:0 5px 15px rgba(0,0,0,0.06);
+      font-family:'b', sans-serif;
+      font-size:0.91em;
+      color:#365c92;
+      text-align:center;
+    }
 
-    .address svg { flex-shrink:0; }
+    .address svg { flex-shrink:0; }
 
-    .gallery-image img {
-      width:100%;
-      border-radius:14px;
-    }
-  </style>
+    .gallery-image img {
+      width:100%;
+      border-radius:14px;
+    }
+  </style>
 </head>
 <body>
-  <div class="profileHeader_dQncS" style="background-image:url('Design%20Image.JPEG');"></div>
+  <div class="profileHeader_dQncS" style="background-image:url('Design%20Image.JPEG');"></div>
 
-  <main class="card">
-    <div class="links">
-      <a class="btn" href="https://instagram.com/exirgoldgallery" target="_blank">
-        <i class="fa-brands fa-instagram ico"></i>اینستاگرام
-      </a>
-      <a class="btn" href="https://wa.me/989220950650/?text=" target="_blank">
-        <i class="fa-brands fa-whatsapp ico"></i>واتساپ
-      </a>
-      <a class="btn" href="tel:+989220950650">
-        <i class="fa-solid fa-phone ico"></i>تماس
-      </a>
-    </div>
+  <main class="card">
+    <div class="links">
+      <a class="btn" href="https://instagram.com/exirgoldgallery" target="_blank">
+        <i class="fa-brands fa-instagram ico"></i>اینستاگرام
+      </a>
+      <a class="btn" href="https://wa.me/989220950650/?text=" target="_blank">
+        <i class="fa-brands fa-whatsapp ico"></i>واتساپ
+      </a>
+      <a class="btn" href="tel:+989220950650">
+        <i class="fa-solid fa-phone ico"></i>تماس
+      </a>
+    </div>
 
-    <div id="map"></div>
+    <div id="map"></div>
 
-    <div class="address">
-      <span class="iconPlaceholder_gOXoO">
-        <svg width="15" height="18" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 14L1.625 8.0566C1.20384 7.33273 0.988568 6.51689 1.00047 5.68969C1.01237 4.86249 1.25102 4.05255 1.69285 3.33991C2.13468 2.62727 2.76439 2.03658 3.51977 1.62622C4.27515 1.21585 5.13005 1 6 1C6.86995 1 7.72485 1.21585 8.48023 1.62622C9.23561 2.03658 9.86532 2.62727 10.3071 3.33991C10.749 4.05255 10.9876 4.86249 10.9995 5.68969C11.0114 6.51689 10.7962 7.33273 10.375 8.0566L6 14Z" stroke="#5D9AFC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="6" cy="6" r="2" fill="#5D9AFC"/>
-        </svg>
-      </span>
-      <a href="https://www.google.com/maps/?q=35.692284480607455,50.98045214772515" target="_blank" class="mapAction">
-        ملارد سرآسیاب خیابان امام خمینی پاساژ طلای الماس پلاک A30
-      </a>
-    </div>
+    <div class="address">
+      <span class="iconPlaceholder_gOXoO">
+        <svg width="15" height="18" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 14L1.625 8.0566C1.20384 7.33273 0.988568 6.51689 1.00047 5.68969C1.01237 4.86249 1.25102 4.05255 1.69285 3.33991C2.13468 2.62727 2.76439 2.03658 3.51977 1.62622C4.27515 1.21585 5.13005 1 6 1C6.86995 1 7.72485 1.21585 8.48023 1.62622C9.23561 2.03658 9.86532 2.62727 10.3071 3.33991C10.749 4.05255 10.9876 4.86249 10.9995 5.68969C11.0114 6.51689 10.7962 7.33273 10.375 8.0566L6 14Z" stroke="#5D9AFC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="6" cy="6" r="2" fill="#5D9AFC"/>
+        </svg>
+      </span>
+      <a href="https://www.google.com/maps/?q=35.692284480607455,50.98045214772515" target="_blank" class="mapAction">
+        ملارد سرآسیاب خیابان امام خمینی پاساژ طلای الماس پلاک A30
+      </a>
+    </div>
 
-    <div class="gallery-image">
-      <img src="./IMG_1737-removebg-preview.png" alt="گالری طلای اکسیر">
-    </div>
-  </main>
+    <div class="gallery-image">
+      <img src="./IMG_1737-removebg-preview.png" alt="گالری طلای اکسیر">
+    </div>
+  </main>
 
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    const map = L.map('map').setView([35.692284480607455, 50.98045214772515], 15);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19, attribution:'' }).addTo(map);
-    L.marker([35.692284480607455, 50.98045214772515]).addTo(map).bindPopup("گالری طلای اکسیر").openPopup();
-    map.on('click', function() {
-  window.open('https://www.google.com/maps/?q=35.692284480607455,50.98045214772515', '_blank');
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([35.692284480607455, 50.98045214772515], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19, attribution:'' }).addTo(map);
+    L.marker([35.692284480607455, 50.98045214772515]).addTo(map).bindPopup("گالری طلای اکسیر").openPopup();
+    map.on('click', function() {
+  window.open('https://www.google.com/maps/?q=35.692284480607455,50.98045214772515', '_blank');
 });
-  </script>
+  </script>
 </body>
 </html>
