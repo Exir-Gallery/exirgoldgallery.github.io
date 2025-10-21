@@ -160,9 +160,14 @@
     }
 
     .gallery-image img {
-      width: 100%;
-      border-radius: 14px;
-    }
+  width: 100%;
+  border-radius: 14px;
+  transition: transform 0.4s ease;
+}
+
+.gallery-image img:hover {
+  transform: scale(1.1); 
+}
 
     .footer {
       position: absolute;
