@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://exir-gallery.github.io/exirgoldgallery.github.io/sitemap.xml
