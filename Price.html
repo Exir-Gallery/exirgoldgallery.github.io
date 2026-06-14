@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>Exir</title>
+
+<style>
+@font-face {
+    font-family: a;
+    src: url(./Vazirmatn-Bold.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: a;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #1b3b6f, #070b18 60%);
+    overflow: hidden;
+    color: white;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.4;
+}
+
+body::before {
+    background: #2f80ff;
+    top: -100px;
+    left: -100px;
+}
+
+body::after {
+    background: #00d4ff;
+    bottom: -120px;
+    right: -120px;
+}
+
+.card {
+    width: 380px;
+    padding: 28px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.08);
+    position: relative;
+    z-index: 2;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 18px;
+    font-size: 20px;
+    color: #7cc7ff;
+}
+
+#priceBox {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 15px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #b9dcff;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    outline: none;
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    color: white;
+}
+
+input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1e90ff, #00c2ff);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0,140,255,0.3);
+}
+
+#result {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #7ef0ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h2>Exir</h2>
+
+<div id="priceBox">در حال دریافت نرخ...</div>
+
+<input id="weight" type="number" placeholder="وزن">
+<input id="fee" type="number" placeholder="اجرت">
+<input id="tax" type="number" placeholder="مالیات">
+
+<button onclick="calc()">محاسبه نهایی</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+let goldRate = 0;
+
+function animateGoldRate(target) {
+    const el = document.getElementById("priceBox");
+
+    let start = 0;
+    let duration = 700;
+    let startTime = null;
+
+    function step(t) {
+        if (!startTime) startTime = t;
+
+        let p = Math.min((t - startTime) / duration, 1);
+        let value = Math.floor(start + (target - start) * p);
+
+        el.textContent =
+            "نرخ لحظه‌ای: " +
+            value.toLocaleString("fa-IR") +
+            " تومان";
+
+        if (p < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+}
+
+async function loadPrice() {
+    try {
+        const res = await fetch("https://soft-violet-2806.qcu213.workers.dev/");
+        const data = await res.json();
+
+        goldRate = Math.floor(data.price);
+
+        animateGoldRate(goldRate);
+
+    } catch (e) {
+        document.getElementById("priceBox").textContent = "خطا در دریافت نرخ";
+    }
+}
+
+function animatePrice(target) {
+    const el = document.getElementById("result");
+
+    let start = 0;
+    let duration = 800;
+    let startTime = null;
+
+    function step(t) {
+        if (!startTime) startTime = t;
+
+        let p = Math.min((t - startTime) / duration, 1);
+        let value = Math.floor(start + (target - start) * p);
+
+        el.textContent =
+            value.toLocaleString("fa-IR") + " تومان";
+
+        if (p < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+}
+
+function calc() {
+    const w = parseFloat(document.getElementById("weight").value) || 0;
+    const fee = parseFloat(document.getElementById("fee").value) || 0;
+    const tax = parseFloat(document.getElementById("tax").value) || 0;
+
+    if (!goldRate) return;
+
+    let price =
+        goldRate *
+        w *
+        1.07 *
+        (1 + fee / 100) *
+        (1 + tax / 100);
+
+    animatePrice(Math.floor(price));
+}
+
+loadPrice();
+setInterval(loadPrice, 30000);
+</script>
+
+</body>
+</html>
