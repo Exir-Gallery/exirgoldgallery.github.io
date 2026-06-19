@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <meta name="description" content="گالری طلای اکسیر در ملارد، عرضه انواع طلا و جواهر، خرید و فروش طلا و ارائه جدیدترین مدل‌های زیورآلات.">
-‍   <meta property="og:title" content="گالری طلای اکسیر">
+  <meta property="og:title" content="گالری طلای اکسیر">
     <meta property="og:description" content="خرید و فروش طلا و جواهر در ملارد">
     <meta property="og:image" content="https://exir-gallery.github.io/exirgoldgallery.github.io/Design%20Image.jpeg">
     <meta property="og:type" content="website">
@@ -221,6 +221,7 @@
   right: 14px;
   top: 50%;
   transform: translateY(-50%);
+  margin-top: 10px;
 }
 
 .mapAction{
@@ -289,6 +290,94 @@
     border-radius: 0;
   }
 }
+.address{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  margin-top: 12px;
+  padding: 10px 16px;
+  border-radius: 14px;
+
+  background: linear-gradient(145deg, #fff, #f9f5ec);
+  box-shadow: 0 5px 15px rgba(0,0,0,.06);
+
+  text-decoration: none;
+  color: #365c92;
+  font-family: b, sans-serif;
+}
+
+.address .iconPlaceholder_gOXoO{
+  position: static;   /* مهم */
+  display: flex;
+  align-items: center;
+}
+
+.mapAction{
+  font-size: 0.85em;
+  text-align: center;
+  line-height: 1.6;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  z-index: 999;
+
+  background: linear-gradient(
+    90deg,
+    #b8860b,
+    #f4e2b8,
+    #ffd700,
+    #fff3c4,
+    #d4af37
+  );
+
+  background-size: 300% 100%;
+  animation: goldShine 10s linear infinite;
+}
+@keyframes goldShine {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(212,175,55,0.25),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.btn:hover::after {
+  left: 120%;
+}
+.ico-img{
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(212,175,55,.3));
+}
   </style>
 </head>
 
@@ -299,15 +388,32 @@
          style="background-image:url('./Design Image.jpeg');">
     </div>
     <div class="links">
+
+      <a class="btn" href="https://t.me/exirgoldgallery" target="_blank">
+        <img src="./24.svg" class="ico-img">
+        تلگرام
+      </a>
+    
       <a class="btn" href="https://instagram.com/exirgoldgallery" target="_blank">
-        <i class="fa-brands fa-instagram ico"></i>اینستاگرام
+        <img src="./icons8-instagram-2048.png" class="ico-img">
+        اینستاگرام
       </a>
-      <a class="btn" href="https://wa.me/989220950650/?text=" target="_blank">
-        <i class="fa-brands fa-whatsapp ico"></i>واتساپ
+    
+      <a class="btn" href="https://rubika.ir/exirgoldgallery" target="_blank">
+        <img src="./logo-Rubika-app-download-png-vector-Toranjlogo (2).png" class="ico-img">
+        روبیکا
       </a>
+    
+      <a class="btn" href="https://ble.ir/exirgoldgallery" target="_blank">
+        <img src="./Logo07 (1).svg" class="ico-img">
+        بله
+      </a>
+    
       <a class="btn" href="tel:+989220950650">
-        <i class="fa-solid fa-phone ico"></i>تماس
+        <img src="./phone-call-svgrepo-com.svg" class="ico-img">
+        تماس
       </a>
+    
     </div>
 
     <div class="map-wrapper">
@@ -341,7 +447,7 @@
     </div>
 
     <div class="footer">
-      © 2025 گالری طلای اکسیر – همهٔ حقوق محفوظ است.
+      © 2026 گالری طلای اکسیر – همهٔ حقوق محفوظ است.
     </div>
   </main>
 
